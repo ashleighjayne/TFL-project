@@ -1,40 +1,70 @@
-import React from 'react';
+let React = require('react');
 
 class TransportTable extends React.Component {
-	render() {
-		console.log('TransportTable');
-		// let items = this.props.data.map((year, index) => {
-  //       	return (
-  //           	<div class="transport-table">
-  //           		<tr key={index}>
-	 //                    <td>{index + 1}</td>
-	 //                    <td className="currency principal">{Math.round(year.principalY).toLocaleString()}</td>
-	 //                    <td className="stretch">
-	 //                        <div className="flex">
-	 //                            <div className="bar principal" style={{flex: year.principalY, WebkitFlex: year.principalY}}></div>
-	 //                            <div className="bar interest" style={{flex: year.interestY, WebkitFlex: year.interestY}}></div>
-	 //                        </div>
-	 //                    </td>
-	 //                    <td className="currency interest">{Math.round(year.interestY).toLocaleString()}</td>
-	 //                    <td className="currency">{Math.round(year.balance).toLocaleString()}</td>
-	 //                </tr>
-  //           	</div>
-  //       	);
-  //       });
+    constructor(props) {
+        super(props);
+
+        this.dataHandler = props.dataHandler;
+        this.pollingTimer = props.pollingTimer;
+
+        this.state = {
+            data: {}
+        };
+
+        this.listenForPollingInterval();
+    }
+
+    listenForPollingInterval() {
+        document.addEventListener('newDataRequested', () => {
+            this.loadData();
+        });
+    }
+
+    loadData() {
+        let response = this.dataHandler.getLineStatus();
+
+        response.then((data) => {
+            this.setState({
+                data: data
+            });
+        });
+    }
+
+    componentWillMount() {
+        this.loadData();
+        this.pollingTimer.setInterval();
+    }
+
+    render() {
+        let tableRows = [];
+
+        if (this.state.data.length) {
+            this.state.data.forEach((line, index) => {
+                tableRows.push(<tr key={index} className="tfl-table--row">
+                        <td className="tfl-table--cell mode">{line.modeName}</td>
+                        <td className="tfl-table--cell name">{line.name}</td>
+                        <td className="tfl-table--cell status">{line.lineStatuses[0].statusSeverityDescription}</td>
+                        <td className="tfl-table--cell disruptions">{line.disruptions.length}</td>
+                    </tr>);
+            });
+        }
+        
         return (
-            <table>
-                <thead>
-                <tr>
-                    <th>Year</th>
-                    <th className="principal">Principal</th>
-                    <th className="stretch"></th>
-                    <th className="interest">Interest</th>
-                    <th>Balance</th>
-                </tr>
+            <table className="tfl-table">
+                <thead className="tfl-table--head">
+                    <tr className="tfl-table--row">
+                        <th className="tfl-table--header-cell mode">Service</th>
+                        <th className="tfl-table--header-cell name">Line</th>
+                        <th className="tfl-table--header-cell status">Status</th>
+                        <th className="tfl-table--header-cell disruptions">Disruptions</th>
+                    </tr>
                 </thead>
+                <tbody className="tfl-table--body">
+                    {tableRows}
+                </tbody>
             </table>
         );
     }
 };
 
-export default TransportTable;
+module.exports = TransportTable;
