@@ -9791,127 +9791,160 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var React = __webpack_require__(32);
 var ReactDOM = __webpack_require__(100);
 var urlParams = {
-	domain: 'https://api.tfl.gov.uk/',
-	lineParams: ['Line/Mode/', 'Status'],
-	modeParams: ['Line/Meta/Modes'],
-	modes: []
+  domain: 'https://api.tfl.gov.uk/',
+  lineParams: ['Line/Mode/', 'Status'],
+  modeParams: ['Line/Meta/Modes']
 };
 
 var getJSON = function getJSON(url) {
-	console.warn('getJSON');
+  var xhr = new XMLHttpRequest();
 
-	var xhr = new XMLHttpRequest();
-	//let url = 'https://api.tfl.gov.uk/Line/Mode/tube%2Cdlr/Status?detail=true';
-	//let url = requestURLParams.domain + requestURLParams.params[0] + transportModes + requestURLParams.params[1];
-
-	return new Promise(function (resolve, reject) {
-		xhr.onreadystatechange = function () {
-			if (xhr.readyState === 4) {
-				if (xhr.status === 200) {
-					resolve(JSON.parse(xhr.responseText));
-				} else {
-					reject(xhr.responseText);
-				}
-			}
-		};
-		xhr.open('GET', url);
-		xhr.send();
-	});
+  return new Promise(function (resolve, reject) {
+    xhr.onreadystatechange = function () {
+      if (xhr.readyState === 4) {
+        if (xhr.status === 200) {
+          resolve(JSON.parse(xhr.responseText));
+        } else {
+          reject(xhr.responseText);
+        }
+      }
+    };
+    xhr.open('GET', url);
+    xhr.send();
+  });
 };
 
-var setState = function setState(data) {
-	console.log('setState');
-	console.log(data);
+var getValidModes = function getValidModes(data) {
+  console.log('getValidModes');
+  var validModes = [];
+
+  data.forEach(function (item) {
+    if (item.isTflService) {
+      validModes.push(item.modeName);
+    }
+  });
+
+  return validModes;
 };
 
 var TransportFilter = function (_React$Component) {
-	_inherits(TransportFilter, _React$Component);
+  _inherits(TransportFilter, _React$Component);
 
-	function TransportFilter() {
-		_classCallCheck(this, TransportFilter);
+  function TransportFilter() {
+    _classCallCheck(this, TransportFilter);
 
-		return _possibleConstructorReturn(this, (TransportFilter.__proto__ || Object.getPrototypeOf(TransportFilter)).call(this));
-		// this.state = {
-		//     modes: this.props.modes,
-		//     selected: this.props.selected
-		// };
-	}
+    return _possibleConstructorReturn(this, (TransportFilter.__proto__ || Object.getPrototypeOf(TransportFilter)).apply(this, arguments));
+  }
 
-	_createClass(TransportFilter, [{
-		key: 'getAllModes',
-		value: function getAllModes() {
-			getJSON('https://api.tfl.gov.uk/Line/Meta/Modes').then(function (data) {
-				console.log(data);
-				// this.state = {
-				//        // modes: this.props.modes,
-				//        // selected: this.props.selected
-				//    };
-			});
-		}
-	}, {
-		key: 'updateURLParams',
-		value: function updateURLParams(event) {
-			console.log('updateURLParams');
-		}
-	}, {
-		key: 'render',
-		value: function render() {
+  _createClass(TransportFilter, [{
+    key: 'render',
 
-			// getJSON('https://api.tfl.gov.uk/Line/Meta/Modes')
-			//   .then(function (data) {
-			//     console.log(data);
-			//     // Promise.all(data.users_list.map(getJSON))
-			//     // .then(function (users) {
-			//     //   console.log(users);
-			//     // });
-			//   }); 
+    // constructor(props) {
+    //        super(props);
+    //        console.log(this.state);
+    //        // this.state = {
+    //        //     modes: this.state.data,
+    //        //     selected: []
+    //        // };
 
 
-			return React.createElement('div', { className: 'filter' });
-		}
-	}]);
+    //    }
 
-	return TransportFilter;
+    // getLineData(url) {
+    // 	console.log('getServiceStatuses');
+    // 	//let url = 
+
+    // 	getJSON(url)
+    // .then(function (data) {
+    //   console.log(data);
+
+    // }); 
+
+    // }
+
+    // updateURL(event) {
+    // 	console.log('updateURLParams');
+
+    // 	let url;
+
+    // 	this.props.selected.forEach((mode) => {
+
+    // 	});
+
+
+    // 	url = urlParams.domain + lineParams[0] + this.props.selected + lineParams[1];
+    // }
+
+    value: function render() {
+      console.log(this.state);
+      // getJSON('https://api.tfl.gov.uk/Line/Meta/Modes')
+      //   .then(function (data) {
+      //     console.log(data);
+      //     // Promise.all(data.users_list.map(getJSON))
+      //     // .then(function (users) {
+      //     //   console.log(users);
+      //     // });
+      //   }); 
+
+
+      return React.createElement('div', { className: 'filter' });
+    }
+  }]);
+
+  return TransportFilter;
 }(React.Component);
 
 ;
 
 var App = function (_React$Component2) {
-	_inherits(App, _React$Component2);
+  _inherits(App, _React$Component2);
 
-	function App() {
-		_classCallCheck(this, App);
+  function App() {
+    _classCallCheck(this, App);
 
-		return _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).apply(this, arguments));
-	}
+    var _this2 = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this));
 
-	_createClass(App, [{
-		key: 'render',
-		value: function render() {
-			var modeUrl = urlParams.domain + urlParams.modeParams[0];
-			getJSON(modeUrl).then(function (data) {
-				console.log(data);
-				setState(data);
-				// this.state = {
-				//        // modes: this.props.modes,
-				//        // selected: this.props.selected
-				// };
-			});
+    _this2.state = {
+      data: {}
+    };
+    return _this2;
+  }
 
-			return React.createElement(
-				'div',
-				null,
-				React.createElement(_Header2.default, { modes: 'Tube, Overground, DLR' }),
-				React.createElement(TransportFilter, null),
-				React.createElement(_TransportTable2.default, null)
-			);
-		}
-	}]);
+  _createClass(App, [{
+    key: 'loadData',
+    value: function loadData() {
+      var _this3 = this;
 
-	return App;
+      var modeUrl = urlParams.domain + urlParams.modeParams[0];
+      var modes = [];
+
+      getJSON(modeUrl).then(function (json) {
+        var modes = getValidModes(json);
+        _this3.setState({
+          data: modes
+        });
+      });
+    }
+  }, {
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      this.loadData();
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      return React.createElement(
+        'div',
+        null,
+        React.createElement(_Header2.default, { modes: 'Tube, Overground, DLR' }),
+        React.createElement(TransportFilter, null),
+        React.createElement(_TransportTable2.default, null)
+      );
+    }
+  }]);
+
+  return App;
 }(React.Component);
-
-;
 
 ReactDOM.render(React.createElement(App, null), document.getElementById("app"));
 
@@ -9950,28 +9983,29 @@ var Header = function (_React$Component) {
     }
 
     _createClass(Header, [{
-        key: "render",
+        key: 'render',
         value: function render() {
+            console.log('Header');
             return _react2.default.createElement(
-                "header",
-                { className: "page-header" },
+                'header',
+                { className: 'page-header' },
                 _react2.default.createElement(
-                    "div",
-                    { className: "home-button" },
+                    'div',
+                    { className: 'home-button' },
                     _react2.default.createElement(
-                        "a",
-                        { href: "/", className: "home-button--link" },
+                        'a',
+                        { href: '/', className: 'home-button--link' },
                         _react2.default.createElement(
-                            "h1",
+                            'h1',
                             null,
-                            "Transport for London"
+                            'Transport for London'
                         )
                     )
                 ),
                 _react2.default.createElement(
-                    "p",
+                    'p',
                     null,
-                    "Showing line status for: ",
+                    'Showing line status for: ',
                     this.props.modes
                 )
             );
@@ -12329,9 +12363,9 @@ var TransportTable = function (_React$Component) {
     }
 
     _createClass(TransportTable, [{
-        key: "render",
+        key: 'render',
         value: function render() {
-
+            console.log('TransportTable');
             // let items = this.props.data.map((year, index) => {
             //       	return (
             //           	<div class="transport-table">
@@ -12351,34 +12385,34 @@ var TransportTable = function (_React$Component) {
             //       	);
             //       });
             return _react2.default.createElement(
-                "table",
+                'table',
                 null,
                 _react2.default.createElement(
-                    "thead",
+                    'thead',
                     null,
                     _react2.default.createElement(
-                        "tr",
+                        'tr',
                         null,
                         _react2.default.createElement(
-                            "th",
+                            'th',
                             null,
-                            "Year"
+                            'Year'
                         ),
                         _react2.default.createElement(
-                            "th",
-                            { className: "principal" },
-                            "Principal"
+                            'th',
+                            { className: 'principal' },
+                            'Principal'
                         ),
-                        _react2.default.createElement("th", { className: "stretch" }),
+                        _react2.default.createElement('th', { className: 'stretch' }),
                         _react2.default.createElement(
-                            "th",
-                            { className: "interest" },
-                            "Interest"
+                            'th',
+                            { className: 'interest' },
+                            'Interest'
                         ),
                         _react2.default.createElement(
-                            "th",
+                            'th',
                             null,
-                            "Balance"
+                            'Balance'
                         )
                     )
                 )

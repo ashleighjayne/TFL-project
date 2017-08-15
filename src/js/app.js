@@ -5,19 +5,14 @@ let ReactDOM = require('react-dom');
 let urlParams = {
 		domain: 'https://api.tfl.gov.uk/',
 		lineParams: ['Line/Mode/', 'Status'],
-		modeParams: ['Line/Meta/Modes'],
-		modes: []
+		modeParams: ['Line/Meta/Modes']
 	};
 
 import Header from './Header';
 import TransportTable from './TransportTable';
 
 let getJSON = (url) => {
-	console.warn('getJSON');
-
 	let xhr = new XMLHttpRequest();
-	//let url = 'https://api.tfl.gov.uk/Line/Mode/tube%2Cdlr/Status?detail=true';
-	//let url = requestURLParams.domain + requestURLParams.params[0] + transportModes + requestURLParams.params[1];
 
 	return new Promise((resolve, reject) => {
 		xhr.onreadystatechange = function () {
@@ -34,40 +29,59 @@ let getJSON = (url) => {
 	});
 }
 
-let setState = (data) => {
-	console.log('setState');
-	console.log(data);
+let getValidModes = (data) => {
+	console.log('getValidModes');
+	let validModes = [];
 
+	data.forEach((item) => {
+		if (item.isTflService) {
+			validModes.push(item.modeName);
+		}
+	});
+
+	return validModes;
 }
 
 class TransportFilter extends React.Component {
-	constructor() {
-        super();
-        // this.state = {
-        //     modes: this.props.modes,
-        //     selected: this.props.selected
-        // };
-    }
+	// constructor(props) {
+ //        super(props);
+ //        console.log(this.state);
+ //        // this.state = {
+ //        //     modes: this.state.data,
+ //        //     selected: []
+ //        // };
 
-    getAllModes() {
-    	getJSON('https://api.tfl.gov.uk/Line/Meta/Modes')
-		  .then(function (data) {
-		    console.log(data);
-		    // this.state = {
-	     //        // modes: this.props.modes,
-	     //        // selected: this.props.selected
-	     //    };
+        
+ //    }
 
-		  }); 
+    // getLineData(url) {
+    // 	console.log('getServiceStatuses');
+    // 	//let url = 
 
-    }
+    // 	getJSON(url)
+		  // .then(function (data) {
+		  //   console.log(data);
 
-    updateURLParams(event) {
-    	console.log('updateURLParams');
-    }
+		  // }); 
+
+    // }
+
+    // updateURL(event) {
+    // 	console.log('updateURLParams');
+
+    // 	let url;
+
+    // 	this.props.selected.forEach((mode) => {
+
+    // 	});
+
+
+
+    // 	url = urlParams.domain + lineParams[0] + this.props.selected + lineParams[1];
+    // }
 
 	render() {
-
+		console.log(this.state);
 		// getJSON('https://api.tfl.gov.uk/Line/Meta/Modes')
 		//   .then(function (data) {
 		//     console.log(data);
@@ -87,28 +101,42 @@ class TransportFilter extends React.Component {
 };
 
 
-
 class App extends React.Component {
-    render() {
-    	let modeUrl = urlParams.domain + urlParams.modeParams[0];
-    	getJSON(modeUrl)
-		  .then(function (data) {
-		    console.log(data);
-		    setState(data);
-		    // this.state = {
-	     //        // modes: this.props.modes,
-	     //        // selected: this.props.selected
-	         // };
-		  });
+    constructor() {
+    	super();
 
+    	this.state = {
+    		data: {}
+    	};
+  	}
+
+    loadData() {
+        let modeUrl = urlParams.domain + urlParams.modeParams[0];
+        let modes = [];
+
+        getJSON(modeUrl).
+            then((json) => {
+            	let modes = getValidModes(json);
+                this.setState({
+                    data: modes
+                });
+            });
+    }
+
+    componentDidMount() {
+        this.loadData();
+    }
+
+    render() {
         return (
             <div>
                 <Header modes="Tube, Overground, DLR"/>
-                <TransportFilter/>
-                <TransportTable/>
+	            <TransportFilter/>
+	            <TransportTable/>
             </div>
         );
     }
-};
+}
+
 
 ReactDOM.render(<App/>,  document.getElementById("app"));

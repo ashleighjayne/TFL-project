@@ -2,6 +2,7 @@ import React from 'react';
 
 class Header extends React.Component {
     render() {
+    	console.log('Header');
         return (
             <header className="page-header">
                 <div className="home-button">

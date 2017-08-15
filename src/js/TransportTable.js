@@ -2,7 +2,7 @@ import React from 'react';
 
 class TransportTable extends React.Component {
 	render() {
-		
+		console.log('TransportTable');
 		// let items = this.props.data.map((year, index) => {
   //       	return (
   //           	<div class="transport-table">
