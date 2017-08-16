@@ -41,6 +41,7 @@ describe('DataHandler', () => {
             expect(DataHandlerInstance.urlParams).to.be.an('object');
         }); 
     });
+    
     //before each - create new instance of data handler 
 
     //after each - clear instance

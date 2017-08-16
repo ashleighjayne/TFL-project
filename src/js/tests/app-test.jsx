@@ -21,12 +21,12 @@ let expect = chai.expect,
 
 describe('<App />', () => {
 
-//     //before each - create new instance of data handler
-//     // Need to mock the dom 
+    //before each - create new instance of data handler
+    // Need to mock the dom 
 
-//     //after each - clear instance/dom
+    //after each - clear instance/dom
 
-//     //describe - Render
-//     // Should show DOM manipulation
+    //describe - Render
+    // Should show DOM manipulation
 
 });
