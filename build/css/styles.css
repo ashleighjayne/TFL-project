@@ -1,3 +1,4 @@
+/* Helpers */
 /* Normalise/reset CSS */
 /* http://meyerweb.com/eric/tools/css/reset/ 
    v2.0 | 20110126
@@ -64,7 +65,7 @@ p {
 .page-inner {
   width: 80%;
   margin: -8px auto 0;
-  box-shadow: 0 2px 10px 2px #ccc; }
+  box-shadow: 0 2px 10px 2px lightgrey; }
 
 .page-header {
   height: 85px;
@@ -85,7 +86,7 @@ p {
 
 .page-footer {
   height: 85px;
-  border-top: 2px solid #ccc;
+  border-top: 2px solid lightgrey;
   padding: 10px;
   background: whitesmoke; }
 

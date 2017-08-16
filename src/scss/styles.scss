@@ -1,3 +1,18 @@
+/* Helpers */
+$color-primary: #113B92;
+$color-primary-darken: darken($color-primary, 10%);
+$color-primary-lighten: lighten($color-primary, 10%);
+
+$color-grey-light: whitesmoke;
+$color-grey: lightgrey;
+$color-grey-dark: darkgrey;
+$color-grey-darker: grey;
+
+@mixin mobile {
+    @media only screen and (max-width: 599px) { @content; }
+}
+
+
 
 /* Normalise/reset CSS */
 /* http://meyerweb.com/eric/tools/css/reset/ 
@@ -46,10 +61,6 @@ table {
 
 
 /* My styles specific to app */
-@mixin mobile {
-    @media only screen and (max-width: 599px) { @content; }
-}
-
 body {
     font-family: sans-serif, Arial, Helvetica;
 }
@@ -66,8 +77,6 @@ p {
     line-height: 1.6;
     margin-bottom: 10px;
 }
-
-
 
 @include mobile {
     h1 {
@@ -87,15 +96,15 @@ p {
     &-inner {
         width: 80%;
         margin: -8px auto 0;
-        box-shadow: 0 2px 10px 2px #ccc;
+        box-shadow: 0 2px 10px 2px $color-grey;
     }
 
     &-header {
         height: 85px;
         padding: 10px;
         margin-bottom: 10px;
-        background: #113B92;
-        border-bottom: 1px solid lightgrey;
+        background: $color-primary;
+        border-bottom: 1px solid $color-grey;
     }
 
     &-title {
@@ -112,9 +121,9 @@ p {
 
     &-footer {
         height: 85px;
-        border-top: 2px solid #ccc;
+        border-top: 2px solid $color-grey;
         padding: 10px;
-        background: whitesmoke;
+        background: $color-grey-light;
     }
 }
 
@@ -127,7 +136,7 @@ p {
     &--instructions {
         font-size: 15px;
         padding: 5px 15px;
-        color: darken(#113B92, 10%);
+        color: $color-primary-darken;
     }
 
     &--list {
@@ -141,7 +150,7 @@ p {
     }
 
     &--item {
-        color: #113B92;
+        color: $color-primary;
         background: #fff;
         width: auto;
         display: block;
@@ -149,23 +158,23 @@ p {
         padding: 10px 20px;
         margin: 5px 10px;
         border-radius: 10px;
-        border: 1px solid #113B92;
+        border: 1px solid $color-primary;
         cursor: pointer;
 
         &.__selected {
             color: #fff;
-            background: #113B92;
+            background: $color-primary;
         }
 
         &:hover {
-            background: lighten(#113B92, 10%);
+            background: $color-primary-lighten;
             color: #fff;
         }
 
         &.__disabled {
-            color: grey;
-            border: 1px solid darkgrey;
-            background: whitesmoke;
+            color: $color-grey-darker;
+            border: 1px solid $color-grey-dark;
+            background: $color-grey-light;
             cursor: initial;
         }
     }
@@ -175,7 +184,6 @@ p {
     }
 }
 
-
 // Table Update
 .tfl-update {
     text-align: right;
@@ -183,7 +191,7 @@ p {
     margin-bottom: 5px;
 
     &--time {
-        color: darken(#113B92, 10%);
+        color: $color-primary-darken;
         font-size: 13px;
         padding: 0 10px;
     }
@@ -192,16 +200,16 @@ p {
         font-size: 14px;
         font-weight: bold;
         padding: 10px 15px;
-        background: whitesmoke;
+        background: $color-grey-light;
         color: #0c2964;
         border-radius: 10px;
-        border: 1px solid lightgrey;
+        border: 1px solid $color-grey;
         vertical-align: super;
         cursor: pointer;
 
         &:hover {
-            background: lightgrey;
-            border: 1px solid darkgrey;
+            background: $color-grey;
+            border: 1px solid $color-grey-dark;
         }
     }
 
@@ -210,15 +218,14 @@ p {
     }
 }
 
-
 // Transport Table
 .tfl-table {
     width: 100%;
     margin: 0 auto;
-    color: darken(#113B92, 10%);
+    color: $color-primary-darken;
 
     &--head {
-        background: lightgrey;
+        background: $color-grey;
     }
 
     &--header-cell {
@@ -241,10 +248,10 @@ p {
     } 
 
     &--row {
-        border-bottom: 1px solid lightgrey;
+        border-bottom: 1px solid $color-grey;
 
         &:nth-child(even) {
-            background: whitesmoke;
+            background: $color-grey-light;
         }
     }
 
