@@ -17,8 +17,30 @@ let expect = chai.expect,
 
 let DataHandler = require('../data-handler');
 
-describe('DataHandler ', () => {
+describe('DataHandler', () => {
 
+    beforeEach(() => {
+
+    });
+
+    afterEach(() => {
+
+    });
+
+    describe('constructor', () => {
+        
+        it('Should create an instance of DataHandler Object', () => {
+            let DataHandlerInstance = new DataHandler;
+
+            expect(DataHandlerInstance).to.be.an('object');
+        });
+
+        it('Should create object propety urlParams as an object', () => {
+            let DataHandlerInstance = new DataHandler;
+
+            expect(DataHandlerInstance.urlParams).to.be.an('object');
+        }); 
+    });
     //before each - create new instance of data handler 
 
     //after each - clear instance

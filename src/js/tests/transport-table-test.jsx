@@ -15,9 +15,9 @@ let expect = chai.expect,
     spy = sinon.spy;
 
 
-let TransportTable = require('../transport-table');
+//let TransportTable = require('../transport-table');
 
-describe('TransportTable ', () => {
+describe('<TransportTable/>', () => {
     
     //before each - create new instance of data handler
     //Need to mock the dom 

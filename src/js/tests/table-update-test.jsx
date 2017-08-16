@@ -15,9 +15,9 @@ let expect = chai.expect,
     spy = sinon.spy;
 
 
-let TableUpdate = require('../table-update');
+//let TableUpdate = require('../table-update');
 
-describe('TableUpdate ', () => {
+describe('<TableUpdate/>', () => {
     
     //before each - create new instance of data handler
     //Need to mock the dom 

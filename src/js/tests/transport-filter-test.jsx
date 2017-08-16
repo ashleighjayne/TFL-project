@@ -15,9 +15,9 @@ let expect = chai.expect,
     spy = sinon.spy;
 
 
-let TransportFilter = require('../transport-filter');
+//let TransportFilter = require('../transport-filter');
 
-describe('TransportFilter ', () => {
+describe('<TransportFilter/>', () => {
     
     //before each - create new instance of data handler
     //Need to mock the dom 

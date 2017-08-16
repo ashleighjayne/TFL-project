@@ -17,14 +17,11 @@ let expect = chai.expect,
 
 let PollingTimer = require('../polling-timer');
 
-describe('PollingTimer ', () => {
-
-    //before each - create new instance of polling timer
+describe('PollingTimer', () => {
+        
+    //before each - create new instance of data handler
 
     //after each - clear instance
-
-    //describe - polling timer - tests constructor
-    // Should create an object
 
     //describe - set interval function
     // Need to mock timer with sinon
