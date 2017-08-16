@@ -7,7 +7,7 @@ class PollingTimer {
     setInterval() {
         this.pollingInterval = window.setInterval(() => {
         document.dispatchEvent(this.event);
-        }, 3000);
+        }, 180000);
     }
 
     clearInterval() {

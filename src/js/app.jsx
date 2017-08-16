@@ -1,18 +1,16 @@
 'use strict';
 
-let React = require('react');
-let ReactDOM = require('react-dom');
+let React = require('react'),
+    ReactDOM = require('react-dom');
 
-let TransportTable = require('./TransportTable');
-let TransportFilter = require('./TransportFilter');
-let TableUpdate = require('./TableUpdate');
-let DataHandler = require('./DataHandler');
-let PollingTimer = require('./PollingTimer');
+let TransportTable = require('./transport-table'),
+    TransportFilter = require('./transport-filter'),
+    TableUpdate = require('./table-update'),
+    DataHandler = require('./data-handler'),
+    PollingTimer = require('./polling-timer');
 
-
-
-let dataHandler = new DataHandler;
-let pollingTimer = new PollingTimer;	
+let dataHandler = new DataHandler,
+    pollingTimer = new PollingTimer;	
 
 
 class App extends React.Component {

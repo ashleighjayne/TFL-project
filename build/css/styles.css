@@ -86,8 +86,8 @@ p {
 .page-footer {
   height: 85px;
   border-top: 2px solid #ccc;
-  margin: 0 10px;
-  padding: 10px; }
+  padding: 10px;
+  background: whitesmoke; }
 
 /* Styles for components */
 .tfl-instructions {
@@ -131,7 +131,8 @@ p {
 
 .tfl-update {
   text-align: right;
-  padding: 10px 0; }
+  padding: 10px 0;
+  margin-bottom: 5px; }
   .tfl-update--time {
     color: #0c2964;
     font-size: 13px;
