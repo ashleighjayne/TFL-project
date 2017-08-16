@@ -15,9 +15,9 @@ let expect = chai.expect,
     spy = sinon.spy;
 
 
-let DataHandler = require('../data-handler');
+let TransportFilter = require('../transport-filter');
 
-describe('DataHandler ', () => {
+describe('TransportFilter ', () => {
 
 
 });

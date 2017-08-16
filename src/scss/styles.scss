@@ -120,16 +120,15 @@ p {
 
 
 /* Styles for components */
-.tfl-instructions {
-    font-size: 15px;
-    padding: 5px 15px;
-    color: darken(#113B92, 10%);
-}
-
-
 // Transport Filter
 .tfl-filter {
     margin-bottom: 20px;
+
+    &--instructions {
+        font-size: 15px;
+        padding: 5px 15px;
+        color: darken(#113B92, 10%);
+    }
 
     &--list {
         margin: 10px;
@@ -153,7 +152,7 @@ p {
         border: 1px solid #113B92;
         cursor: pointer;
 
-        &.selected {
+        &.__selected {
             color: #fff;
             background: #113B92;
         }
@@ -163,7 +162,7 @@ p {
             color: #fff;
         }
 
-        &.disabled {
+        &.__disabled {
             color: grey;
             border: 1px solid darkgrey;
             background: whitesmoke;

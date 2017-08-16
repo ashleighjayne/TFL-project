@@ -15,9 +15,9 @@ let expect = chai.expect,
     spy = sinon.spy;
 
 
-let DataHandler = require('../data-handler');
+let TableUpdate = require('../table-update');
 
-describe('DataHandler ', () => {
+describe('TableUpdate ', () => {
 
 
 });

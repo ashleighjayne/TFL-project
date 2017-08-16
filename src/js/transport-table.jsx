@@ -1,6 +1,13 @@
 let React = require('react');
 
+/* 
+* Transport Table
+* Displays data re service line statuses
+*/
 class TransportTable extends React.Component {
+    /** 
+    * @param {object} props - Contains pollingTimer and data handler Objects
+    */
     constructor(props) {
         super(props);
 
@@ -20,6 +27,9 @@ class TransportTable extends React.Component {
         });
     }
 
+    /** 
+    * Loads data and sets as this.state - this will cause re-render of component
+    */
     loadData() {
         let response = this.dataHandler.getLineStatus();
 

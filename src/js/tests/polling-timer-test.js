@@ -15,9 +15,9 @@ let expect = chai.expect,
     spy = sinon.spy;
 
 
-let DataHandler = require('../data-handler');
+let PollingTimer = require('../polling-timer');
 
-describe('DataHandler ', () => {
+describe('PollingTimer ', () => {
 
 
 });

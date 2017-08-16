@@ -1,6 +1,13 @@
 let React = require('react');
 
+/* 
+* Table Update
+* Loads info re last update and allows users to manually refresh data
+*/
 class TableUpdate extends React.Component {
+    /** 
+    * @param {object} props - pollingTimer Object
+    */
     constructor(props) {
         super(props);
 
@@ -24,8 +31,11 @@ class TableUpdate extends React.Component {
         });
     }
 
+    /** 
+    * Set current time in this.state - will cause re-render of component
+    */
     setTime() {
-        let time = new Date().toLocaleTimeString('en-GB', { hour12: true, hour: "numeric", minute: "numeric", second:"numeric"});
+        let time = new Date().toLocaleTimeString('en-GB', { hour12: true, hour:'numeric', minute:'numeric', second:'numeric'});
 
         this.setState({
             time: time

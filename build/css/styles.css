@@ -90,13 +90,12 @@ p {
   background: whitesmoke; }
 
 /* Styles for components */
-.tfl-instructions {
-  font-size: 15px;
-  padding: 5px 15px;
-  color: #0c2964; }
-
 .tfl-filter {
   margin-bottom: 20px; }
+  .tfl-filter--instructions {
+    font-size: 15px;
+    padding: 5px 15px;
+    color: #0c2964; }
   .tfl-filter--list {
     margin: 10px; }
     .tfl-filter--list:after {
@@ -114,13 +113,13 @@ p {
     border-radius: 10px;
     border: 1px solid #113B92;
     cursor: pointer; }
-    .tfl-filter--item.selected {
+    .tfl-filter--item.__selected {
       color: #fff;
       background: #113B92; }
     .tfl-filter--item:hover {
       background: #164dc0;
       color: #fff; }
-    .tfl-filter--item.disabled {
+    .tfl-filter--item.__disabled {
       color: grey;
       border: 1px solid darkgrey;
       background: whitesmoke;
