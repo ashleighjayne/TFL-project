@@ -66,7 +66,7 @@ class TransportFilter extends React.Component {
 
         return (
             <div className="tfl-filter">
-                <p className="tfl-filter--instructions">Select services to filter:</p>
+                <p className="tfl-filter--instructions">Select services to filter: (dev note: the filter functionality is currently a work in progress.)</p>
 
                 <ul className="tfl-filter--list">
                     {filterItems}

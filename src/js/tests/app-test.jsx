@@ -19,5 +19,12 @@ let App = require('../app');
 
 describe('App ', () => {
 
+    //before each - create new instance of data handler
+    // Need to mock the dom 
+
+    //after each - clear instance/dom
+
+    //describe - Render
+    // Should show DOM manipulation
 
 });

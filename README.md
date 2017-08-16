@@ -50,7 +50,8 @@ As this is a work in progress, there is still a lot I would like to implement bu
 * Split styling into separate sass files for base, layout, normalise, and each component
 * Set up sass preprocessor to compile and lint styling
 * Set up linter for javascript
-* Set up unit testing for javascript
+* Set up unit testing for javascript - will need to use something like JSDom to mock the DOM
+* Replace labels on filter component e.g. replacement-bus -> Replacement Bus
 
 #### Future Features
 There are also a number of features I would like to implement in future, such as:
@@ -77,5 +78,3 @@ $ npm install sinon
 $ npm install enzyme
 $ npm install react-test-renderer
 ```
-
-
